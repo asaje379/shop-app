@@ -27,8 +27,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 # shop-app
 
-## Requirements
-This project requires [Angular CLI](https://github.com/angular/angular-cli) and [Electron](https://electronjs.org) be installed.
 
 ## Installation
 Download and extract the zip file.
@@ -36,5 +34,7 @@ Download and extract the zip file.
 Run `npm i`
 
 Run `npm run elb`
+
+You can use electron-packager to generate an executable.
 
 Enjoy ! :)
