@@ -11,7 +11,7 @@ export class NotifComponent implements OnInit {
 
   notifs: any[] = [];
   sub: Subscription;
-  curNotif:any = {};
+  curNotif: any = {};
   open = false;
 
 
@@ -32,14 +32,17 @@ export class NotifComponent implements OnInit {
     this.sub = this.localService.subjects['notifs'].subscribe(
       (data) => {
         this.notifs = data;
+        console.log(data);
       }
     );
   }
 
   deleteAll() {
-    for (let n of this.notifs) {
-      n.isActive = false;
-      this.localService.save('notifs', n, this.localService.notifs);
+    if (confirm('Etes vous sûr de vouloir vider la liste des notifications ?')) {
+      for (let n of this.notifs) {
+        n.isActive = false;
+        this.localService.save('notifs', n, this.localService.notifs).subscribe();
+      }
     }
   }
 
@@ -47,7 +50,7 @@ export class NotifComponent implements OnInit {
     this.curNotif = notif;
     this.open = true;
     this.curNotif.isRead = true;
-    this.localService.save('notifs', this.curNotif, this.localService.notifs);
+    this.localService.save('notifs', this.curNotif, this.localService.notifs).subscribe();
   }
 
 }

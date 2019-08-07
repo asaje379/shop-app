@@ -180,7 +180,7 @@ export class SellingComponent implements OnInit, OnDestroy {
           a.article.isActive = false;
           this.error = 'La quantité en stock de ' + a.article.lib + ' est épuisée. Veuillez charger à nouveau.';
           let notif = {
-            dateNotif: Date.now,
+            dateNotif: Date.now(),
             content: this.error,
             isActive: true,
             isRead: false,

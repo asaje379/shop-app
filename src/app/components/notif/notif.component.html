@@ -1,4 +1,4 @@
-<div class="container" style="height: 550px; overflow: auto;">
+<div class="container" style="height: 550px; overflow: auto;" *ngIf="!open">
   <div class="bg-dark" style="display: grid; grid-template-columns: 200px auto;">
     <button class="btn btn-danger" (click)="deleteAll()">
       <fa name="minus-square"></fa> Tout effacer
@@ -7,22 +7,23 @@
   </div>
   <h2>Avertissements !</h2>
   <div class="msgs" *ngFor="let notif of notifs" (click)="select(notif)" 
-      [ngClass]="{'read': notif.isRead, 'not-read': !notif.isRead}">
-    {{ notif.dateNotif }}
+      [ngClass]="{'read': notif.isRead, 'not-read': !notif.isRead}"
+      title="Cliquez pour afficher le contenu du message">
+    {{ notif.dateNotif | date:"dd/MM/yyyy HH:mm"  }}
     <span style="margin: 0px 10px 0px 10px;">|</span>
-    {{ notif.description }}
+    {{ notif.description }} ...
   </div>
 </div>
 
-<div class="container" *ngIf="open">
-  <div class="bg-dark" style="display: grid; grid-template-columns: 200px auto;">
+<div class="container" *ngIf="open" style="height: 550px; overflow: auto;">
+  <div class="bg-dark" style="display: grid; grid-template-columns: 250px auto;">
     <button class="btn btn-success" (click)="open = false">
       <fa name="bars"></fa> Retouner au menu principal
     </button>
     <div></div>
   </div>
   <h3>Contenu du message</h3>
-  <p>
+  <p style="background-color: #fff; color: maroon; padding: 2%;">
     {{ curNotif.content }}
   </p>
 </div>

@@ -1,6 +1,22 @@
 .read {
-    background-color: lightblue;
+    background-color: #efefef;
 }
 .not-read {
     font-weight: bold;
+}
+.read, .not-read {
+    padding: 1%;
+    border: solid lightseagreen 1px;
+    border-bottom: none; 
+    border-radius: 8px;
+
+}
+.msgs {
+    background-color: #fcfcfc;
+    border-bottom: solid lightseagreen 1px;
+    color: #555;
+}
+.read:hover, .not-read:hover {
+    cursor: pointer;
+    background-color: #eee;
 }
