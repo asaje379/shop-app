@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # shop-app
 
 ## Requirements
-This project requires [Angular CLI](https://github.com/angular/angular-cli) and [Electron](https://electronjs.org) be installed
+This project requires [Angular CLI](https://github.com/angular/angular-cli) and [Electron](https://electronjs.org) be installed.
 
 ## Installation
 Download and extract the zip file.
