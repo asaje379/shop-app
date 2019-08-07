@@ -16,7 +16,6 @@ export class CategoryComponent implements OnInit, OnDestroy {
 
   categorie:string = '';
   sub: Subscription;
-  sub2: Subscription;
   categories: any[] = [];
   mdlIsActive: boolean = false;
   categoriesFull = [];

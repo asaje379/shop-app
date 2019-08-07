@@ -36,6 +36,7 @@ export class SellingComponent implements OnInit, OnDestroy {
   curTel: any;
   art = '';
   num = 0;
+  subb: Subscription;
 
   constructor(
     private localService: LocalService
@@ -44,6 +45,7 @@ export class SellingComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.iinit();
     this.localService.initDbs('notifs');
+    
   }
 
   iinit() {
@@ -64,6 +66,8 @@ export class SellingComponent implements OnInit, OnDestroy {
     this.subTel = this.localService.subjects['tels'].subscribe(d => {
       this.tels = d;
     });
+    this.localService.initDbs('notifs');
+    this.subb = this.localService.subjects['notifs'].subscribe();
   }
 
   check($event) {
@@ -78,6 +82,7 @@ export class SellingComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
     this.subFact.unsubscribe();
     this.subTel.unsubscribe();
+    this.subb.unsubscribe();
   }
 
   select(article) {

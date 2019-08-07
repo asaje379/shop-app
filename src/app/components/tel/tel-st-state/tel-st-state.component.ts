@@ -1,5 +1,5 @@
 import { LocalService } from './../../../services/local.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 
 @Component({
@@ -7,60 +7,53 @@ import { Subscription, Observable } from 'rxjs';
   templateUrl: './tel-st-state.component.html',
   styleUrls: ['./tel-st-state.component.scss']
 })
-export class TelStStateComponent implements OnInit {
+export class TelStStateComponent implements OnInit, OnDestroy {
 
   subTels: Subscription;
   subCat: Subscription;
   tels = [];
   categories = [];
   filteredData = [];
-  wait = true;
 
   constructor(
     private localService: LocalService
   ) { }
 
   ngOnInit() {
+    this.localService.initDbs('tels');
+    this.localService.initDbs('categories');
     this.init().subscribe(d => {
-      setTimeout(() => {
-        this.filteredData = d;
-        this.wait = false;
-      }, 2000);
+      this.filteredData = d;
+      for (let i = 0; i < this.filteredData.length; ++i) {
+        if (this.filteredData[i].values.length == 0) {
+          this.filteredData.splice(i, 1);
+        }
+      }
     });
+  }
+
+  ngOnDestroy() {
+    this.subCat.unsubscribe();
+    this.subTels.unsubscribe();
   }
 
   init() {
     let ref = this;
     return new Observable<any[]>(observer => {
-      const obsv = new Observable<any[]>(obs1 => {
-        ref.localService.initDbs('tels');
-        ref.subTels = ref.localService.subjects['tels'].subscribe(d => {
-          obs1.next(d);
-        });
-      });
-      obsv.subscribe((dt) => {
+      ref.subTels = ref.localService.subjects['tels'].subscribe(dt => {
         ref.tels = dt;
-        const ob = new Observable<any[]>(obs2 => {
-          ref.localService.initDbs('categories');
-          ref.subCat = ref.localService.subjects['categories'].subscribe(d => {
-            obs2.next(d);
-          });
-        });
-        ob.subscribe(d => {
-          ref.categories = d;
-          const op = new Observable<any[]>(o => {
-            let s = [];
-            for (let c of ref.categories) {
+        ref.subCat = ref.localService.subjects['categories'].subscribe(dc => {
+          ref.categories = dc;
+          let s = [];
+          for (let c of ref.categories) {
+            let v = ref.localService.filter(this.tels, 'category', c.value);
+            if (v.length != 0)
               s.push({
                 id: c.value,
-                values: ref.localService.filter(this.tels, 'category', c.value)
+                values: v
               });
-            }
-            o.next(s);
-          });
-          op.subscribe(d => {
-            observer.next(d);
-          });
+          }
+          observer.next(s);
         });
       });
     });
@@ -77,13 +70,7 @@ export class TelStStateComponent implements OnInit {
       }
       this.filteredData = selected;
     } else {
-      this.wait = true;
-      this.init().subscribe(d => {
-        setTimeout(() => {
-          this.filteredData = d;
-          this.wait = false;
-        }, 2000);
-      });
+      this.ngOnInit();
     }
   }
 }
