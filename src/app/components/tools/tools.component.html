@@ -1,0 +1,57 @@
+<div class="s row">
+  <div class="s-form col-sm-6">
+      <h3>Formulaire</h3>
+      <div class="row">
+          <div class="form-group col-sm-6">
+              <label for="username">Libellé</label>
+              <input type="text" id="username" [(ngModel)]="lib" name="lib" class="form-control">
+              <span class="text-danger" style="font-size: 0.8em;">PS: Ce champ est obligatoire</span>
+          </div>
+          <div class="form-group col-sm-6">
+              <label for="password">Quantité</label>
+              <input type="number" min="1" id="password" [(ngModel)]="quantite" name="quantite" class="form-control">
+          </div><br><br>
+          <button class="btn btn-success" (click)="onSubmit()" [disabled]="lib == ''">
+              <fa name="check"></fa> Ajouter un accessoire
+          </button>
+      </div>
+  </div>
+  <div class="s-list col-sm-6">
+      <h3>Liste des accessoires</h3>
+      <table class="table table-bordered">
+          <thead>
+              <tr class="bg-dark">
+                  <th colspan="3">
+                      <div class="row">
+                          <div class="col-sm-2">
+                              <fa name="search" class="text-light" size="2x"></fa>
+                          </div>
+                          <div class="col-sm-10">
+                              <input 
+                                  class="form-control" 
+                                  placeholder="Rechercher ..."
+                                  type="text" 
+                                  (keyup)="applyFilter($event.target.value)"> 
+                          </div>
+                      </div>
+                  </th>
+              </tr>
+              <tr class="bg-dark text-light">
+                  <th>Libellé</th>
+                  <th>Quantité en stock</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let a of articles">
+                  <td>{{ a.lib }}</td>
+                  <td>{{  a.quantite }}</td>
+              </tr>
+              <tr *ngIf="articles.length == 0">
+                  <td colspan="3">
+                      <span class="text-danger">Aucun accessoire enregistré !</span>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

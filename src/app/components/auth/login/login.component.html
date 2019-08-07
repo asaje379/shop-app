@@ -1,0 +1,27 @@
+<div class="container" style="margin-top: 5%;text-align: center;" *ngIf="!open">
+  <h1 class="text-light">Connexion !</h1>
+  <app-flash-box [genre]="'danger'" [content]="error_message" *ngIf="error_message != ''" ></app-flash-box>
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <div class="container">
+      <div class="form-group f-it mt-4 mb-4">
+        <fa name="user-circle" class="text-dark" size="2x"></fa>
+        <input autofocus id="username" type="text" class="form-control" formControlName="username" placeholder="Identifiant">
+      </div>
+      <div class="form-group f-it mt-4 mb-4">
+        <fa name="lock" class="text-dark" size="2x"></fa>
+        <input id="password" type="password" class="form-control" formControlName="password" placeholder="Mot de passe">
+      </div>
+      <button class="btn btn-success mb-4" [disabled]="form.invalid">Login !</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="open">
+  <div class="bg-dark" style="display: grid; grid-template-columns: 100px auto;">
+    <button class="btn btn-danger" (click)="open = false">
+      <fa name="arrow-left" ></fa> Retour
+    </button>
+    <div></div>
+  </div>
+  <app-signin></app-signin>
+</div>
+<app-flash-box [genre]="'info'" [content]="redirectMessage" *ngIf="redirectMessage != ''" ></app-flash-box>

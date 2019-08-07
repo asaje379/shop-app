@@ -1,0 +1,70 @@
+<div class="s row">
+    <div class="s-form col-sm-6">
+        <h3>Formulaire</h3>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="username">Identifiant</label>
+                <input type="text" id="username" [(ngModel)]="username" name="username" class="form-control">
+                <span class="text-warning" style="font-size: 0.8em;">
+                    <b>PS : </b> 4 caractères minimum requis !
+                </span>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control">
+                <span class="text-warning" style="font-size: 0.8em;">
+                    <b>PS : </b> 8 caractères minimum requis !
+                </span>
+            </div>
+            <div class="form-group col-sm-12">
+                <label for="isAdmin" style="margin-right: 10px;">Enregistrer en tant qu'administrateur ? </label>
+                <input type="checkbox" id="isAdmin" [(ngModel)]="isAdmin" name="isAdmin">
+            </div>
+            <button class="btn btn-success" (click)="addUser()" [disabled]="username.length < 4 || password.length < 8">
+                <fa name="check"></fa> Ajouter l'utilisateur
+            </button>
+        </div>
+    </div>
+    <div class="s-list col-sm-6">
+        <h3>Liste des utilisateurs</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="bg-dark">
+                    <th colspan="3">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <fa name="search" class="text-light" size="2x"></fa>
+                            </div>
+                            <div class="col-sm-10">
+                                <input 
+                                    class="form-control" 
+                                    placeholder="Rechercher ..."
+                                    type="text" 
+                                    (keyup)="applyFilter($event.target.value)"> T : {{ users.length }}
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="bg-dark text-light">
+                    <th>Nom d'utilisateur</th>
+                    <th>Est administrateur</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.isAdmin == true ? 'OUI' : 'NON' }}</td>
+                    <td>
+                        <fa name="trash" class="text-danger fa" (click)="delete(user)"></fa>
+                    </td>
+                </tr>
+                <tr *ngIf="users.length == 0">
+                    <td colspan="3">
+                        <span class="text-danger">Aucun utilisateur enregistré !</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

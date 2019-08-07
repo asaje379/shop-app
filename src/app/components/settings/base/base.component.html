@@ -1,0 +1,33 @@
+<div *ngIf="!user.isAdmin" class="priv text-danger">
+  <h3>Acccès refusé !</h3>
+  <img height="200" src="../../../../assets/logo1.jpeg" alt="Logo">
+
+  Vous n'avez pas les privilèges requis pour accéder aux paramètres...
+</div>
+<div *ngIf="user.isAdmin">
+  <nav class="navbar sticky-top navbar-light">
+    <ul>
+      <li>
+        <a class="text-light" routerLink="signin">Utilisateur</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a class="text-light" routerLink="fournisseur">Fournisseur</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a class="text-light" routerLink="category">Modèle de téléphone</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a class="text-light" routerLink="color">Couleur</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a class="text-light" routerLink="taille">Capacité de stockage</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>

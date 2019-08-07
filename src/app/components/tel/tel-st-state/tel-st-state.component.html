@@ -1,0 +1,21 @@
+<div class="row" style="width: 80%; margin: auto;">
+  <div class="col-sm-6 text-light bg-success" style="text-align: center;">
+    Nombre de téléphone en stock : {{ tels.length }}
+  </div>
+  <div class="col-sm-6 text-success" style="text-align: center; background-color: #fff;">
+    Nombre de modèles différents : {{ categories.length }}
+  </div>
+</div>
+<div class="bg-dark row" style="width: 80%; margin: auto;padding: 5px 2px 5px 0px;">
+  <div class="col-sm-1"><fa name="search" size="2x"></fa></div>
+  <div class="col-sm-11">
+    <input type="text" placeholder="Rechercher ..." class="form-control" (keyup)="applyFilter($event.target.value)">
+  </div>
+</div>
+<div class="row ctn">
+  <div *ngFor="let item of filteredData" class="it bg-info">
+    <div>{{ item.id }}</div>
+    <div>{{ item.values.length }}</div>
+  </div>
+  <div *ngIf="wait">Chargement ...</div>
+</div>

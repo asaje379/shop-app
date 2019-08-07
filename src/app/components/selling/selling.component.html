@@ -1,0 +1,207 @@
+<div class="all">
+  <div class="row f-form" *ngIf="!show">
+    <div class="form-fact col-sm-12 col-lg-6">
+      <h3>Formulaire</h3>
+      <form>
+        <app-flash-box [genre]="'danger'" [content]="error" *ngIf="error!=''"></app-flash-box>
+        <div>
+          <fieldset>
+            <legend>Informations du client (facultatif)</legend>
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <label for="nom">Nom et prénoms du client</label>
+                <input [disabled]="facture.commandes.length != 0" type="text" class="form-control" [(ngModel)]="facture.client"
+                  name="nom">
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="tel">Téléphone</label>
+                <input [disabled]="facture.commandes.length != 0" type="text" class="form-control" [(ngModel)]="facture.tel"
+                  name="tel">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Informations sur l'article</legend>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <label for="lib">Article sélectionné</label>
+                <input placeholder="Cliquez sur un article" disabled type="text" class="form-control" [(ngModel)]="art"
+                  name="lib">
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="prix">Prix</label>
+                <input type="number" min="5" step="5" class="form-control" [(ngModel)]="prix" name="prix">
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="nbr">Quantité à vendre</label>
+                <input type="number" min="1" (keyup)="check($event)" class="form-control" [(ngModel)]="quantite" name="quantite">
+              </div>
+            </div>
+          </fieldset>
+        </div><br>
+        <div class="row">
+          <div class="col-sm-4">
+            <button class="btn btn-primary" [disabled]="art == null || error != ''" (click)="next()">
+              <fa name="step-forward"></fa> Suivant
+            </button>
+          </div>
+          <div class="col-sm-4">
+            <button class="btn btn-danger" [disabled]="facture.commandes.length == 0" (click)="annuler()">
+              <fa name="stop"></fa> Annuler
+            </button>
+          </div>
+          <div class="col-sm-4">
+            <button class="btn btn-success" [disabled]="facture.commandes.length == 0" (click)="terminate()">
+              <fa name="times-circle"></fa> Terminer
+            </button>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-6">Nombre d'articles à facturer : {{ facture.commandes.length }}</div>
+          <div class="col-sm-6">Prix total : {{ facture.montant }} </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="list-articles col-sm-12 col-lg-6">
+      <div class="tables">
+        <div>
+          <h5>Accessoires</h5>
+          <table class="table">
+            <thead class="bg-dark text-light">
+              <tr class="bg-dark">
+                <th colspan="6">
+                  <div style="display:grid;grid-template-columns:20px auto;">
+                    <fa name="search"></fa>
+                    <input placeholder="Rechercher ..." class="form-control" type="text" (keyup)="applyFilter($event.target.value)">
+                  </div>
+                </th>
+              </tr>
+              <tr class="bg-dark">
+                <th>Libellé</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let article of articles" (click)="select(article)">
+                <td>{{ article.lib }}</td>
+              </tr>
+              <tr *ngIf="articles.length == 0">
+                <td colspan="6">
+                  <span class="text-danger">Aucun accessoire trouvé !</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h5>Téléphones</h5>
+          <table class="table">
+            <thead class="bg-dark text-light">
+              <tr class="bg-dark">
+                <th colspan="6">
+                  <div style="display:grid;grid-template-columns:20px auto;">
+                    <fa name="search"></fa>
+                    <input placeholder="Rechercher ..." class="form-control" type="text" (keyup)="applyTelsFilter($event.target.value)">
+                  </div>
+                </th>
+              </tr>
+              <tr class="bg-dark">
+                <th>Modèle</th>
+                <th>IMEI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tel of tels" (click)="selectTel(tel)">
+                <td>{{ tel.ref }}</td>
+                <td>{{ tel.category }}</td>
+              </tr>
+              <tr *ngIf="tels.length == 0">
+                <td colspan="6">
+                  <span class="text-danger">Aucun téléphone trouvé !</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="show">
+    <div class="bg-dark" style="display: grid; grid-template-columns: 100px auto;">
+      <button class="btn btn-danger" (click)="show = false; initAll();">
+        <fa name="arrow-left"></fa> Retour
+      </button>
+      <div></div>
+    </div>
+    <div class="bg-secondary entete-fact">
+      <span class="text-light" style="text-align: center;vertical-align:center; font-size: 1.2em;"><i>Aperçu de la
+          facture</i></span>
+      <button class="btn btn-info" (click)="print()">
+        <fa name="print" size="1x"></fa> Imprimer
+      </button>
+    </div>
+
+    <div class="facture" id="facture">
+      <div class="entete-facture">
+        <img width="50" height="80" src="assets/logo1.jpeg">
+        <h4>Joshua GSM</h4>
+      </div> <br>
+      <div class="n-date-facture">
+        <div>Facture n° {{ num }}</div>
+        <div> Date : {{ facture.dateFacturation | date:"dd/MM/yyyy" }}</div>
+      </div> <br>
+      <div class="content-facture">
+        <div class="n-client">
+          Client : {{ facture.client }}
+        </div>
+        <div class="t-client">
+          Téléphone : {{ facture.tel }}
+        </div> <br>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="9">Liste des articles achetés.</th>
+            </tr>
+            <tr>
+              <th *ngIf="c_ref">Réf.</th>
+              <th>Lib.</th>
+              <th *ngIf="c_cat">Cat.</th>
+              <th *ngIf="c_mar">Marq.</th>
+              <th *ngIf="c_tai">Tail.</th>
+              <th *ngIf="c_cou">Coul.</th>
+              <th>Pr. Un.</th>
+              <th>Quan.</th>
+              <th>Pr. T.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let f of facture.commandes">
+              <td *ngIf="c_ref">{{ f.article.ref }}</td>
+              <td>{{ f.article.lib }}</td>
+              <td *ngIf="c_cat">{{ f.article.category }}</td>
+              <td *ngIf="c_mar">{{ f.article.mark }}</td>
+              <td *ngIf="c_tai">{{ f.article.taille }}</td>
+              <td *ngIf="c_cou">{{ f.article.color }}</td>
+              <td>{{ f.prix }} FCFA</td>
+              <td>{{ f.quantite }}</td>
+              <td>{{ f.prix * f.quantite }} FCFA</td>
+            </tr>
+            <tr class="pat">
+              <td><b>Total</b></td>
+              <td><b>{{ facture.montant }} FCFA</b></td>
+              <td colspan="7"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <br> <br><br><br>
+
+        <div class="caisse">
+          <i><u><b>Le caissier</b></u></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

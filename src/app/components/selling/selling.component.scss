@@ -1,0 +1,86 @@
+.all {
+    padding: 2%;
+    height: 620px;
+    overflow: auto;
+}
+
+.list-articles {
+    tr:nth-child(2n) {
+        background-color: #f1f1f1;
+    }
+    tr:hover {
+        background-color: #aaa;
+        color: #fff;
+    }
+    td {
+        max-width: 100px;
+        overflow: auto;
+    }
+    overflow: auto;
+}
+.facture {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    margin-bottom: 5%;
+    border: solid 2px darkblue;
+    padding: 0px 1% 2% 1%;
+    background-color: #fff;
+    color: #000;
+
+    td {
+        max-width: 100px;
+        overflow: hidden;
+    }
+    table {
+        width: 100%;
+        margin: auto;
+
+        th, td {
+            border: solid 1px #aaa;
+            text-align: center;
+        }
+         
+        tr {
+            background-color: transparent;
+        }
+    }
+
+    .pat {
+        td:last-child {
+            border: none;
+        }
+    }
+}
+.entete-facture {
+    display: grid;
+    grid-template-columns: 80px auto;
+}
+.entete-fact {
+    display: grid;
+    grid-template-columns: auto 120px;
+}
+.n-date-facture {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+.f-form {
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+    
+    button {
+        width: 100%;
+    }
+}
+.caisse {
+    width: 100%;
+    text-align: right;
+}
+.tables {
+    display: grid;
+    grid-template-columns: auto auto;
+
+    div {
+        margin: 5px;
+    }
+}

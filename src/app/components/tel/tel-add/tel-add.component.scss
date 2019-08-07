@@ -1,0 +1,57 @@
+.all {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: 550px;
+}
+
+
+.all-c1 {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 3px;
+}
+
+.sp {
+    height: 220px;
+    overflow: auto;
+    border: solid 1px lightgray;
+    margin: 10px;
+    padding: 0px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+}
+
+.ap {
+    position: absolute;
+    bottom: 20px; 
+    right: 30px;
+    width: 80%;
+}
+
+table {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.btn {
+    width: 100%;
+    margin: 5px 1px 10px 1px;
+}
+
+.detail {
+    color: #333;
+    td {
+        padding: 5px;
+    }
+    tr, tr:hover {
+        background-color: #fff;
+        color: gray;
+    }
+}
+
+.bt {
+    display: block;
+    margin: auto;
+    width: 80%;
+}

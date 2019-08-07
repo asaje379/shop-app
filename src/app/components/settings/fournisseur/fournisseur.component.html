@@ -1,0 +1,60 @@
+<div class="s row">
+    <div class="s-form col-sm-6">
+        <h3>Formulaire</h3>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="username">Nom et prénoms</label>
+                <input type="text" id="username" [(ngModel)]="nom" name="nom" class="form-control">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="password">Téléphone</label>
+                <input type="tel" id="password" [(ngModel)]="tel" name="tel" class="form-control">
+            </div>
+            <button class="btn btn-success" (click)="addUser()" [disabled]="nom == '' || tel == ''">
+                <fa name="check"></fa> Ajouter le fournisseur
+            </button>
+        </div>
+    </div>
+    <div class="s-list col-sm-6">
+        <h3>Liste des fournisseurs</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="bg-dark">
+                    <th colspan="3">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <fa name="search" class="text-light" size="2x"></fa>
+                            </div>
+                            <div class="col-sm-10">
+                                <input 
+                                    class="form-control" 
+                                    placeholder="Rechercher ..."
+                                    type="text" 
+                                    (keyup)="applyFilter($event.target.value)"> 
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="bg-dark text-light">
+                    <th>Nom et prénoms</th>
+                    <th>Téléphone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let f of fournisseurs">
+                    <td>{{ f.nom }}</td>
+                    <td>{{ f.tel ? f.tel : '-' }}</td>
+                    <td>
+                        <fa name="trash" class="text-danger fa" (click)="delete(f)"></fa>
+                    </td>
+                </tr>
+                <tr *ngIf="fournisseurs.length == 0">
+                    <td colspan="3">
+                        <span class="text-danger">Aucun fournisseur enregistré !</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

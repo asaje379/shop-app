@@ -1,0 +1,21 @@
+<div *ngIf="!user.isAdmin" class="priv text-danger">
+  <h3>Acccès refusé !</h3>
+  <img height="200" src="assets/logo1.jpeg" alt="Logo">
+
+  Vous n'avez pas les privilèges requis pour accéder à cette partie de l'application ...
+</div>
+<div *ngIf="user.isAdmin">
+  <nav class="navbar sticky-top navbar-light">
+    <ul>
+      <li>
+        <a class="text-light" routerLink="st-state">Etat du stock</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a class="text-light" routerLink="add">Mettre en stock</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>

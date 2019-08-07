@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'Tangerine';
+    src: url('../assets/Tangerine-Bold.ttf');
+}
+
+h4 {
+    text-align: center;
+    width: 100%;
+    font-size: 3em;
+    font-style: italic;
+    margin-top: 0px;
+    padding-top: 2%;
+    height: 80px;
+    font-family: 'Tangerine', 'Courier New', Courier, monospace;
+}
+
+.facture {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    margin-bottom: 5%;
+    padding: 0px 1% 2% 1%;  
+    width: 100%;
+    margin-left: 50px;
+}
+
+table {
+    width: 100%; 
+    border-collapse: collapse;  
+}
+
+.pat td:last-child {
+    border: none;
+}
+th, td {
+    border: solid 1px gray;
+    text-align: center;
+}
+.entete-facture {
+    display: grid;
+    grid-template-columns: 80px auto;
+    background-color: #aaa;
+    border: solid 2px;
+    padding-bottom: 0px;
+    height: 80px;
+}
+
+.n-date-facture {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
+.caisse {
+    width: 100%;
+    text-align: right;
+}

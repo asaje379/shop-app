@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-sm-9">
+    <h4>Stocker des téléphones ...</h4>
+    <div class="all">
+      <div class="all-c1">
+        <div class="form-group">
+          <div class="col-sm-12">
+            <label for="ref">N° IMEI</label>
+          </div>
+          <div class="col-sm-12">
+            <input type="text" id="ref" class="form-control" [(ngModel)]="ref" name="ref">
+            <span class="text-light" style="font-size: 0.8em;">PS: Ce champ est obligatoire !</span>
+          </div>
+        </div>
+        <div class="form-group" style="padding-left: 2px;">
+          <div class="col-sm-12">
+            <label for="state">Etat du téléphone</label>
+          </div>
+          <div class="col-sm-12">
+            <select name="state" id="state" [(ngModel)]="state" class="form-control">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: block; margin: auto; width: 90%;">
+        <div class="row">
+          <div class="col-sm-12 col-lg-5 col-xs-6 sp">
+            <app-category (emitCategorie)="categorie=$event"></app-category>
+          </div>
+          <div class="col-sm-12 col-lg-5 col-xs-6 sp">
+            <app-color (emitColor)="color=$event"></app-color>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 col-lg-5 col-xs-6 sp">
+            <app-tail (emitTail)="tail=$event"></app-tail>
+          </div>
+          <div class="col-sm-12 col-lg-5 col-xs-6 sp">
+            <app-f-r (emitFournisseur)="fournisseur=$event"></app-f-r>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3 pt-4" style="background-color: #fff;">
+    <div class="detail">
+      <h5 class="text-primary">Détail du téléphone sélectionné</h5>
+      <table>
+        <tr>
+          <td>Référence ou IMEI</td>
+          <td>:</td>
+          <td>{{ ref }}</td>
+        </tr>
+        <tr>
+          <td>Modèle</td>
+          <td>:</td>
+          <td>{{ categorie }}</td>
+        </tr>
+
+        <tr>
+          <td>Couleur</td>
+          <td>:</td>
+          <td>{{ color }}</td>
+        </tr>
+        <tr>
+          <td>Taille</td>
+          <td>:</td>
+          <td>{{ tail }}</td>
+        </tr>
+
+        <tr>
+          <td>Fournisseur</td>
+          <td>:</td>
+          <td>{{ fournisseur }}</td>
+        </tr>
+
+        <tr>
+          <td>Etat</td>
+          <td>:</td>
+          <td>{{ state }} / 10</td>
+        </tr>
+
+      </table>
+      <button class="btn btn-success mt-4 bt" (click)="save()" [disabled]="ref == ''">Enregistrer
+        le téléphone !</button>
+    </div>
+  </div>
+</div>

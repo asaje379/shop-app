@@ -1,0 +1,32 @@
+:host {
+    background: url('../../../../assets/bkgd.jpg');
+    background-size: cover;
+    display: block;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+form {
+    padding-top: 1%;
+    width: 50%;
+    margin: auto;
+    border: solid 1px lightblue;
+    border-radius: 8px;
+    box-shadow: 3px 3px #eaeaea, -3px -3px #eaeaea;
+    background-color: #fff;
+}
+
+.info {
+    font-size: 0.9em;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+}
+.f-it {
+    display: grid;
+    grid-template-columns: 10% 90%;
+}

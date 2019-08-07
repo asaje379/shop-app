@@ -1,0 +1,45 @@
+<nav class="navbar navbar-dark bg-success container-fluid">
+  <div class="hd">
+      <div class="add">
+          <fa name="plus-circle" class="fa text-warning" size="1x" (click)="setMdlActive()" title="Ajouter un fournisseur"></fa>
+          <h5>Choisir un fournisseur !</h5>
+      </div>
+
+      <div class="sr">
+          <fa name="search" size="1x"></fa>
+          <input type="text" placeholder="Rechercher" (keyup)="applyFilter($event.target.value)"> 
+      </div>
+      <div style="text-align:center;" class="text-light"><b>T : {{ fournisseurs.length }}</b></div>
+  </div>
+</nav>
+
+<div class="div" style="overflow: auto;">
+  <div class="list" *ngFor="let c of fournisseurs" (click)="send(c)">
+      <span>{{ c.nom }}</span>
+      <fa name="edit" class="text-primary fa" title="Modifier" (click)="onUpdate(c)"></fa>
+      <fa name="trash" class="text-danger fa" title="Supprimer" (click)="onArchive(c)"></fa>
+  </div>
+</div>
+<app-flash-box [genre]="'success'" [content]="msg" *ngIf="nom != ''" ></app-flash-box>
+
+<div class="mdl" *ngIf="mdlIsActive">
+  <div class="mdl-ctn">
+      <div class="" style="text-align: right; padding-right: 10px;">
+          <fa name="window-close" class="fa text-danger" title="Fermer" (click)="mdlIsActive = false;fournisseur=''"></fa>
+      </div>
+      <h4 class="mb-4">Remplir le formulaire</h4>
+      <form class="container mt-4" (submit)="onSubmit()">
+          <div class="form-group mb-4">
+              <label for="cat">Nom du fournisseur <span class="text-danger">*
+                  </span> </label>
+              <input type="text" name="nom" id="cat" class="form-control" [(ngModel)]="fournisseur">
+          </div>
+          <div class="form-group mb-4">
+            <label for="cat">Téléphone du fournisseur <span class="text-danger">*
+                </span> </label>
+            <input type="text" name="tel" id="cat" class="form-control" [(ngModel)]="tel">
+        </div>
+          <button class="btn btn-success">{{ btn_text }}</button>
+      </form>
+  </div>
+</div>

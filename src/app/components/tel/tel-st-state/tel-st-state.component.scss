@@ -1,0 +1,23 @@
+.it {
+    display: grid;
+    grid-template-columns: auto auto;
+
+    div:first-child {
+        font-style: italic; 
+        font-size: 1.5em;
+    }
+
+    div:last-child {
+        font-size: 4em;
+    } 
+    margin: 2%;
+    width: 21%;
+    height: 100px;
+}
+.ctn {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    height: 454px;
+    overflow: auto;
+}

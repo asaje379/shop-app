@@ -1,0 +1,40 @@
+<nav class="navbar navbar-dark bg-success container-fluid">
+    <div class="hd">
+        <div class="add">
+            <fa name="plus-circle" class="fa text-warning" size="1x" (click)="setMdlActive()" title="Ajouter une couleur"></fa>
+            <h5>Choisir une couleur !</h5>
+        </div>
+
+        <div class="sr">
+            <fa name="search" size="1x"></fa>
+            <input type="text" placeholder="Rechercher" (keyup)="applyFilter($event.target.value)"> 
+        </div>
+        <div style="text-align:center;" class="text-light"><b>T : {{ colors.length }}</b></div>
+    </div>
+</nav>
+
+<div class="div" style="overflow: auto;">
+    <div class="list" *ngFor="let c of colors" (click)="select(c)">
+        <span>{{ c.value }}</span>
+        <fa name="edit" class="text-primary fa" title="Modifier" (click)="onUpdate(c)"></fa>
+        <fa name="trash" class="text-danger fa" title="Supprimer" (click)="onArchive(c)"></fa>
+    </div>
+</div>
+<app-flash-box [genre]="'success'" [content]="msg" *ngIf="value != ''" ></app-flash-box>
+
+<div class="mdl" *ngIf="mdlIsActive">
+    <div class="mdl-ctn">
+        <div class="" style="text-align: right; padding-right: 10px;">
+            <fa name="window-close" class="fa text-danger" title="Fermer" (click)="mdlIsActive = false;this.categorie=''"></fa>
+        </div>
+        <h4 class="mb-4">Remplir le formulaire</h4>
+        <form class="container mt-4" (submit)="onSubmit()">
+            <div class="form-group mb-4">
+                <label for="cat">Nom de la couleur <span class="text-danger">*
+                    </span> </label>
+                <input type="text" name="color" id="cat" class="form-control" [(ngModel)]="color">
+            </div>
+            <button class="btn btn-success" [disabled]="color == ''">{{ btn_text }}</button>
+        </form>
+    </div>
+</div>

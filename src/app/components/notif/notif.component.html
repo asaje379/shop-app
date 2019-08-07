@@ -1,0 +1,28 @@
+<div class="container" style="height: 550px; overflow: auto;">
+  <div class="bg-dark" style="display: grid; grid-template-columns: 200px auto;">
+    <button class="btn btn-danger" (click)="deleteAll()">
+      <fa name="minus-square"></fa> Tout effacer
+    </button>
+    <div></div>
+  </div>
+  <h2>Avertissements !</h2>
+  <div class="msgs" *ngFor="let notif of notifs" (click)="select(notif)" 
+      [ngClass]="{'read': notif.isRead, 'not-read': !notif.isRead}">
+    {{ notif.dateNotif }}
+    <span style="margin: 0px 10px 0px 10px;">|</span>
+    {{ notif.description }}
+  </div>
+</div>
+
+<div class="container" *ngIf="open">
+  <div class="bg-dark" style="display: grid; grid-template-columns: 200px auto;">
+    <button class="btn btn-success" (click)="open = false">
+      <fa name="bars"></fa> Retouner au menu principal
+    </button>
+    <div></div>
+  </div>
+  <h3>Contenu du message</h3>
+  <p>
+    {{ curNotif.content }}
+  </p>
+</div>

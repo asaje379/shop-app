@@ -1,0 +1,23 @@
+ul {
+    list-style-type: none;
+    li {
+        display: inline-block;
+        margin: 10px;
+    }
+}
+
+.priv {
+    font-size: 1.5em;
+    width: 50%;
+    margin: auto;
+    margin-top: 5%;
+    text-align: center;
+    color: #fff;
+
+    img {
+        display: block;
+        width: 30%;
+        margin: auto;
+        margin-bottom: 10%;
+    }
+}

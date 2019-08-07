@@ -1,0 +1,31 @@
+table {
+    td, th {
+        text-align: center;
+    }
+    border-collapse: collapse;
+    width: 100%;
+    tr:nth-child(2n) {
+        background-color: #fff;
+        color: #333;
+    }
+    tbody {
+        tr:hover {
+            background-color: #eee;
+            color: #555;
+        }
+    }
+}
+.fa {
+    cursor: pointer;
+}
+.s {
+    width: 100%;
+    .s-form {
+        padding: 3%;
+
+        button {
+            display: block;
+            margin: auto;
+        }
+    }
+}

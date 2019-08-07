@@ -1,0 +1,41 @@
+<div class="c-toolbar"></div>
+<div class="center">
+  <div class="c-navbar-left">
+    <ul>
+      <li routerLinkActive="active">
+        <a routerLink="">
+          <fa name="home" size="2x" title="Aller à l'accueil"></fa>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="tools">
+          <fa name="shopping-cart" title="Stocker des accessoirs" size="2x"></fa>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="tel">
+          <fa name="mobile" title="Stocker des téléphones" size="2x"></fa>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="selling">
+          <fa name="money" title="Vendre des articles" size="2x"></fa>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="params">
+          <fa name="cog" title="Paramètres" size="2x"></fa>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="notif">
+          <fa name="bell-o" title="Notifications" size="2x"></fa>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="c-main-center">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<div class="footer"></div>

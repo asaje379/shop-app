@@ -1,0 +1,74 @@
+:host {
+    display: block;
+    background-color: #fff;
+    color: #555;
+    height: 100%;
+    overflow: auto;
+}
+.sr {
+    display: grid;
+    grid-template-columns: 30px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    border: solid 1px lightgray;
+    padding: 3px;
+
+    input {
+        border: none;
+        background-color: #fff;
+        padding-left: 2%;
+    }
+}
+
+.sr:hover {
+    border: solid 1px rgb(132, 199, 255);
+}
+.fa2 {
+    background-color: #fff;
+}
+h5 {color: white; font-size: 1.5em;}
+table {width: 100%;}
+.hd {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    width: 100%;
+}
+.add {
+    display: grid;
+    grid-template-columns: 7% 93%;
+}
+.add:hover {
+    color: rgb(136, 118, 15);
+}
+
+.mdl {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+
+    .mdl-ctn {
+        width: 50%;
+        margin: 5% auto;
+        background-color: #fff;
+        padding-bottom: 20px;
+    }
+}
+
+.list {
+    display: grid;
+    grid-template-columns: auto 30px 30px;
+    border-bottom: solid lightblue 1px;
+    padding: 1%;
+}
+.list:hover {
+    background-color: #eee;
+}
+
+.fa:hover {
+    cursor: pointer;
+    color: #aaa;
+}
