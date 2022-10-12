@@ -34,7 +34,7 @@
     "hammerjs": "^2.0.8",
     "jquery": "^3.4.1",
     "jquery-csv": "^1.0.0",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.5.1",
     "mysql2": "^1.6.5",
     "ngx-papaparse": "^3.0.2",
     "ngx-print": "^1.2.0-beta.2",
